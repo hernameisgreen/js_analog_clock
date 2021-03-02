@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analog Clock</title>
+    <link rel="stylesheet" href="ck.css">
+    <!-- visual reference: Dennis Hoogstrad (behance) https://dribbble.com/shots/5518208-Mornings -->
+</head>
+
+<body>
+   
+    <div class="clock-body">
+        <div class="top-switch"></div>
+        <div class="top-switch-handle"></div>
+        <div class="clock">
+            <div class="hour">
+                <div class="hr" id="hr"></div>
+            </div>
+            <div class="min">
+                <div class="mn" id="mn"></div>
+            </div>
+            <div class="sec">
+                <div class="sc" id="sc"></div>
+            </div>
+        </div>
+        <div class="clock-foot-one"></div>
+        <div class="clock-foot-two"></div>
+        <div class="platform"></div>
+    </div>
+    
+</body>
+<script>
+    const deg = 6; /* 360/60=6 */
+    const hr = document.querySelector("#hr");
+    const min = document.querySelector("#mn");
+    const sec = document.querySelector("#sc");
+
+    setInterval(() => {
+        let day = new Date();
+        console.log(day)
+        /*
+        a day=24 hours
+        a clock = 360 deg (12 hours)
+        a day= 2 clocks
+        360*2/24=30
+        */
+        let hrd = day.getHours();
+        //console.log(hrd)
+        /* 
+        360deg/60min=6
+        so->one minute is 6 degs
+        */
+        let mid = day.getMinutes();
+        //console.log(mid)
+        let sed = day.getSeconds();
+        //console.log(sed)
+        /* 時鐘不是過一個時間點動一格，而是一個牽引著一個動 */
+
+        let sedeg = sed * 6;
+        /* one minute=60secs=6eg */
+        let mideg = mid * 6;
+        let hrdeg = hrd * 30 + mideg * 0.5;
+
+        hr.style.transform = `rotateZ(${hrdeg}deg)`;
+        min.style.transform = `rotateZ(${mideg}deg)`;
+        sec.style.transform = `rotateZ(${sedeg}deg)`
+    }, 1000)
+
+</script>
+
+</html>
