@@ -39,7 +39,7 @@
 
     setInterval(() => {
         let day = new Date();
-        console.log(day)
+        //console.log(day)
         /*
         a day=24 hours
         a clock = 360 deg (12 hours)
@@ -61,7 +61,7 @@
         let sedeg = sed * 6;
         /* one minute=60secs=6eg */
         let mideg = mid * 6;
-        let hrdeg = hrd * 30 + mideg * 0.5;
+        let hrdeg = hrd * 30 + mid * 0.5;
 
         hr.style.transform = `rotateZ(${hrdeg}deg)`;
         min.style.transform = `rotateZ(${mideg}deg)`;
